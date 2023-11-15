@@ -19,7 +19,7 @@ function Pokemon({ id, name, img, verPokemon }) {
       </div>
     </>
   );
-}
+};
 
 function InfoPokemon({mostRar, pokemon, cerrar}) {
   return(
@@ -59,8 +59,8 @@ function InfoPokemon({mostRar, pokemon, cerrar}) {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 function SearchPokemon({ pokSearch, setPokSearch, searchPokemon }) {
   return(
@@ -74,7 +74,7 @@ function SearchPokemon({ pokSearch, setPokSearch, searchPokemon }) {
       </form>
     </>
   );
-}
+};
 
 const ExampleComponent = () => {
   const [pokemon, setPokemon] = useState([]);
@@ -86,7 +86,7 @@ const ExampleComponent = () => {
   const noVerPokemon = () => {
     setMostRar({ mostRar: false, pokemon: {} });
     setPokSearch('');
-  }
+  };
 
   const fetchPokemon = async (url) => {
     const response = await fetch(url);
@@ -104,7 +104,7 @@ const ExampleComponent = () => {
       stats,
       types
     }
-  }
+  };
 
   const getPokemon = async (url = POKEAPI_URL) => {
     const response = await fetch(url);
@@ -116,24 +116,24 @@ const ExampleComponent = () => {
     )
 
     return{ next, FirstPokemon }
-  }
+  };
 
   const receiverPokemon = async () => {
     const { next, FirstPokemon } = await getPokemon();
     setPokemon(FirstPokemon);
     setSignUrl(next);
-  }
+  };
 
   const nextPokemon = async () => {
     const { next, FirstPokemon } = await getPokemon(signUrl);
     setPokemon(prev => [...prev, ...FirstPokemon]);
     setSignUrl(next);
-  }
+  };
 
   const pokSearchSubmit = async (pokSearch) => {
     const url = `${POKEAPI_URL_POINT}${pokSearch.toLocaleLowerCase()}`;
     return await fetchPokemon(url);
-  }
+  };
 
   const searchPokemon = async (e) => {
     e.preventDefault();
@@ -143,9 +143,9 @@ const ExampleComponent = () => {
     const pokemon = await pokSearchSubmit(pokSearch);
 
     setMostRar({ mostRar: true, pokemon });
-  }
+  };
 
-  useEffect(() => { receiverPokemon() }, [])
+  useEffect(() => { receiverPokemon() }, []);
 
   return (
     <>
@@ -166,7 +166,7 @@ const ExampleComponent = () => {
         </div>
       </div>
     </>
-  )
+  );
 };
 
 export default ExampleComponent;
